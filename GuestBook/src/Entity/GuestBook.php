@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GuestBookRepository::class)]
 #[ApiResource]
+#[ORM\HasLifecycleCallbacks]
 class GuestBook
 {
     use EntityExtension;

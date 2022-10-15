@@ -26,21 +26,24 @@ trait EntityExtension {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    #[ORM\PrePersist]
+    public function prePersist(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+
+    #[ORM\PreUpdate]
+    public function preUpdate(): self
+    {
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

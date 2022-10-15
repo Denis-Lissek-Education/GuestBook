@@ -41,17 +41,16 @@ class GuestBookController extends AbstractController
         // Must do it this way, SQLite does not have joins
         $guestBook = [];
         foreach($users as $user){
-            foreach($guestBookEntries as $entry){
+            foreach($guestBookEntries as $entry){ 
                 if($entry->getUserId() === $user->getId()){
                     $guestBook[] = [
                         'firstName' => $user->getFirstName(),
                         'lastName' => $user->getLastName(),
-                        'checkedIn' => $entry->getCreatedAt()->format('d. m. Y, H:i:s'),
+                        'checkIn' => $entry->getCreatedAt()->format('d. m. Y, H:i:s'),
                     ];
                 }
             }
         }
-
         return $this->render('guest_book/list.html.twig', [
             'guestBook' => $guestBook,
         ]);
