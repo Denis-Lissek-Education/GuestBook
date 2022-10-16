@@ -15,7 +15,7 @@
     {% else %}
         <ul>
             {% for entry in guestBook %}
-                <li>{{entry.firstName}} {{entry.lastName}} CheckIn: {{entry.checkIn}}</li>
+                <li>{{entry.user.firstName}} {{entry.user.lastName}} CheckIn: {{entry.checkIn}}</li>
             {% endfor %}
         </ul>
     {% endif %}
